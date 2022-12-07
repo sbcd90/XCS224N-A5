@@ -1,4 +1,6 @@
 import random
+
+import numpy.random
 import torch
 from torch.utils.data import Dataset
 import argparse
@@ -175,6 +177,28 @@ class CharCorruptionDataset(Dataset):
         ### [part e]: see spec above
 
         ### START CODE HERE
+        random.seed(42)
+        doc = self.data[idx]
+
+        len_min = 4
+        len_max = int(self.block_size * 7/8)
+        truncated_doc = doc[:random.randint(len_min, len_max)]
+
+        masked_content_len = int(numpy.random.normal(loc=len(truncated_doc)/4, scale=0.001, size=self.__len__())[idx])
+        prefix = truncated_doc[:1]
+        masked_content = truncated_doc[1: masked_content_len+1]
+        suffix = truncated_doc[masked_content_len+1:]
+
+        masked_string = prefix + self.MASK_CHAR + suffix + self.MASK_CHAR + masked_content + self.MASK_CHAR
+        masked_string = masked_string + self.PAD_CHAR*(self.block_size - len(masked_string))
+
+        x = masked_string[:-1]
+        y = masked_string[1:]
+
+        x = torch.tensor([self.stoi[c] for c in x], dtype=torch.long)
+        y = torch.tensor([self.stoi[c] for c in y], dtype=torch.long)
+
+        return x, y
         ### END CODE HERE
 
         raise NotImplementedError
