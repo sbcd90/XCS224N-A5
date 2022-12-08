@@ -177,7 +177,6 @@ class CharCorruptionDataset(Dataset):
         ### [part e]: see spec above
 
         ### START CODE HERE
-        random.seed(42)
         doc = self.data[idx]
 
         len_min = 4
