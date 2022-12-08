@@ -77,7 +77,7 @@ def finetune(reading_params_path, finetune_corpus_path, pretrain_dataset, block_
                               num_workers=4)
 
         finetune_dataset = NameDataset(open(finetune_corpus_path, encoding="utf-8").read(), pretrain_dataset)
-        trainer_obj = Trainer(model, train_dataset=finetune_dataset, test_dataset=None, config=tconf)
+        trainer_obj = Trainer(model, train_dataset=finetune_dataset, test_dataset="./data/birth_places_test.tsv", config=tconf)
     ### END CODE HERE
     return tconf, trainer_obj
 
