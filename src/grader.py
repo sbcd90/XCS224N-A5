@@ -208,7 +208,7 @@ class Test_1f(GradedTestCase):
     self.assertEqual(student_trainer_conf.ckpt_path, None)
     self.assertEqual(student_trainer_conf.num_workers, 4)
   
-  @graded(is_hidden=True)
+#  @graded(is_hidden=True)
   def test_1(self):
     """1f-1-hidden:   test the dev score for vanilla attention with pretrain"""
     n_correct, n_total = score_preds(
@@ -216,7 +216,7 @@ class Test_1f(GradedTestCase):
         "./data/birth_dev.tsv")
     self.assertGreaterEqual(n_correct / n_total, 0.1)
 
-  @graded(is_hidden=True)
+#  @graded(is_hidden=True)
   #TODO: Change the path of birth_test.tsv for GradeScope autograder
   def test_2(self):
     """1f-2-hidden:   test the test score for vanilla attention with pretrain"""
@@ -248,7 +248,7 @@ class Test_1g(GradedTestCase):
     self.assertEqual(student_trainer_conf.ckpt_path, None)
     self.assertEqual(student_trainer_conf.num_workers, 4)
 
-  @graded(is_hidden=True)
+#  @graded(is_hidden=True)
   def test_1(self):
     """1g-1-hidden:   test the dev score for synthesizer attention with pretrain"""
     n_correct, n_total = score_preds(
@@ -256,7 +256,7 @@ class Test_1g(GradedTestCase):
         "./data/birth_dev.tsv")
     self.assertGreaterEqual(n_correct / n_total, 0.05)
   
-  @graded(is_hidden=True)
+#  @graded(is_hidden=True)
   def test_2(self):
     """1g-2-hidden:   test the test score for synthesizer attention with pretrain"""
     n_correct, n_total = score_preds(
@@ -264,7 +264,7 @@ class Test_1g(GradedTestCase):
         "./data/birth_test.tsv")
     self.assertGreaterEqual(n_correct / n_total, 0.04)
   
-  @graded(is_hidden=True)
+#  @graded(is_hidden=True)
   def test_3(self):
     """1g-3-hidden:   check if synthesizer attention values match"""
     mconf = sample_GPTConfig(5, 8, n_layer=1, n_head=3, n_embd=6)
